@@ -130,6 +130,19 @@
     .contact-link:hover { border-color: var(--purple); color: var(--purple); background: var(--purple-light); text-decoration: none; }
     .contact-icon { font-size: 18px; width: 24px; text-align: center; }
 
+    .rcard { background: var(--bg); border: 0.5px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+    .rcard-header { background: #2d3a4e; padding: 0.9rem 1.2rem; display: flex; align-items: center; gap: 10px; }
+    .rcard-icon { font-size: 18px; }
+    .rcard-title { font-size: 14px; font-weight: 500; color: #f0ede8; line-height: 1.4; }
+    .rcard-body { font-size: 13px; line-height: 1.75; color: var(--text-secondary); padding: 1rem 1.2rem 0; }
+    .rcard-sub { font-size: 12px; font-weight: 500; color: var(--text-primary); padding: 0.8rem 1.2rem 0.4rem; letter-spacing: 0.02em; }
+    .rcard-list { padding: 0 1.2rem 0 2.4rem; }
+    .rcard-list li { font-size: 13px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 6px; }
+    .rcard-list li strong { color: var(--text-primary); font-weight: 500; }
+    .rcard .pub-links { padding: 0 1.2rem 1.2rem; }
+    [data-theme="dark"] .rcard-header { background: #1e2a3a; }
+    @media (max-width: 600px) { #research .page > div[style*="grid"] { grid-template-columns: 1fr !important; } }
+
     .footer { text-align: center; padding: 1.5rem 0; font-size: 12px; color: var(--text-muted); border-top: 0.5px solid var(--border); margin-top: 2rem; }
 
     @media (max-width: 600px) {
@@ -383,61 +396,91 @@
     <p>Point-of-care diagnostics · Blood engineering · CRISPR assays · Infectious disease detection</p>
   </div>
 
-  <div class="research-item">
-    <div class="r-img">🧬</div>
-    <div class="r-content">
-      <h3>Amplification-free CRISPR-Cascade for blood pathogen detection</h3>
-      <div class="r-meta">2022 – 2026 · Bashir Lab, UIUC</div>
-      <div class="tags">
-        <span class="tag">CRISPR</span><span class="tag">OR-gate</span>
-        <span class="tag">Attomolar</span><span class="tag">Whole blood</span><span class="tag">Amplification-free</span>
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+
+    <div class="rcard">
+      <div class="rcard-header">
+        <span class="rcard-icon">🧬</span>
+        <span class="rcard-title">Amplification-free CRISPR-Cascade diagnostics</span>
       </div>
-      <p>Developed an amplification-free, OR-gated CRISPR-Cascade assay with dual-blocking autocatalytic strategy achieving attomolar sensitivity for multiplex pathogen detection directly from whole blood — eliminating nucleic acid purification.</p>
-      <div class="pub-links">
+      <p class="rcard-body">We develop <strong>amplification-free, OR-gated CRISPR-Cascade assays</strong> for ultra-sensitive pathogen detection directly from whole blood, eliminating nucleic acid purification. Our dual-blocking autocatalytic strategy achieves attomolar sensitivity with low nonspecific signal.</p>
+      <div class="rcard-img">🧬</div>
+      <div class="rcard-sub">Sub-projects</div>
+      <ul class="rcard-list">
+        <li><strong>OR-gated multiplex detection:</strong> Simultaneous detection of multiple pathogens using a single CRISPR-Cascade reaction with OR-gate logic.</li>
+        <li><strong>Dual-blocking strategy:</strong> BNA and gRNA blocking to suppress nonspecific signal and enable attomolar sensitivity without amplification.</li>
+        <li><strong>Kinetic modeling:</strong> Mathematical modeling of CRISPR-Cascade kinetics to optimize assay design.</li>
+      </ul>
+      <div class="pub-links" style="margin-top:1rem;">
         <a class="pub-link" href="https://www.pnas.org/doi/10.1073/pnas.2420166122" target="_blank">PNAS (2025)</a>
-        <a class="pub-link" href="https://www.pnas.org" target="_blank">PNAS (2026)</a>
+        <a class="pub-link" href="#" target="_blank">PNAS (2026)</a>
       </div>
     </div>
-  </div>
 
-  <div class="research-item flip">
-    <div class="r-content">
-      <h3>Biphasic dried blood diagnostics</h3>
-      <div class="r-meta">2020 – 2026 · Bashir Lab, UIUC</div>
-      <div class="tags">
-        <span class="tag">Blood drying</span><span class="tag">HBV</span>
-        <span class="tag">Sepsis</span><span class="tag">LAMP</span><span class="tag">RPA</span><span class="tag">Zika</span><span class="tag">HCV</span>
+    <div class="rcard">
+      <div class="rcard-header">
+        <span class="rcard-icon">💧</span>
+        <span class="rcard-title">Biphasic dried blood diagnostics</span>
       </div>
-      <p>Developed a biphasic (solid + liquid phase) blood drying method enabling inhibitor inactivation and DNA/RNA amplification simultaneously without purification. Established a new material platform — dried blood — for molecular diagnostics. Achieved 10 IU mL⁻¹ LOD for HBV within 1.5 hours.</p>
-      <div class="pub-links">
-        <a class="pub-link" href="#" target="_blank">Advanced Healthcare Materials (2024)</a>
+      <p class="rcard-body">We develop a <strong>biphasic blood drying platform</strong> — a new biomaterial that enables simultaneous inhibitor inactivation and nucleic acid amplification directly from whole blood, without purification. Dried blood acts as a reusable biological scaffold for repeated diagnostics.</p>
+      <div class="rcard-img">💧</div>
+      <div class="rcard-sub">Sub-projects</div>
+      <ul class="rcard-list">
+        <li><strong>DNA virus detection:</strong> Dried blood matrix for HBV, MRSA, E. coli — 10 IU mL⁻¹ LOD within 1.5 hours.</li>
+        <li><strong>RNA virus detection:</strong> Biphasic RNA amplification for Zika and HCV from whole blood.</li>
+        <li><strong>Materials characterization:</strong> Porosity, surface properties, inhibitor inactivation mechanisms of dried blood.</li>
+      </ul>
+      <div class="pub-links" style="margin-top:1rem;">
+        <a class="pub-link" href="#" target="_blank">Science Advances (2026)</a>
+        <a class="pub-link" href="#" target="_blank">Adv. Healthcare Materials (2024)</a>
         <a class="pub-link" href="#" target="_blank">Small (2024)</a>
         <a class="pub-link" href="#" target="_blank">PNAS (2022)</a>
-        <a class="pub-link" href="#" target="_blank">Science Advances (2026, accepted)</a>
       </div>
     </div>
-    <div class="r-img">💧</div>
-  </div>
 
-  <div class="research-item">
-    <div class="r-img">🦠</div>
-    <div class="r-content">
-      <h3>Multiplex point-of-care respiratory virus detection</h3>
-      <div class="r-meta">2020 – 2024 · Bashir Lab, UIUC</div>
-      <div class="tags">
-        <span class="tag">SARS-CoV-2</span><span class="tag">Influenza</span>
-        <span class="tag">RSV</span><span class="tag">Microfluidics</span><span class="tag">Smartphone</span>
+    <div class="rcard">
+      <div class="rcard-header">
+        <span class="rcard-icon">🦠</span>
+        <span class="rcard-title">Multiplex point-of-care respiratory diagnostics</span>
       </div>
-      <p>Built a smartphone-integrated point-of-care platform with temperature control, fluorescence reading, and contamination-free cartridges for simultaneous detection of SARS-CoV-2, Influenza, and RSV, including variant identification.</p>
-      <div class="pub-links">
+      <p class="rcard-body">We build <strong>smartphone-integrated point-of-care platforms</strong> for simultaneous detection of SARS-CoV-2, Influenza, and RSV, including variant identification, using temperature-controlled fluorescence detection with contamination-free cartridges.</p>
+      <div class="rcard-img">🦠</div>
+      <div class="rcard-sub">Sub-projects</div>
+      <ul class="rcard-list">
+        <li><strong>Smartphone fluorimeter:</strong> Dual-port, pocket-size fluorimeter linked to a smartphone for rapid molecular assays at point-of-care.</li>
+        <li><strong>Variant identification:</strong> Microfluidic device for detection of early strains and B.1.1.7 variant of SARS-CoV-2.</li>
+        <li><strong>Respiratory panel:</strong> Simultaneous multiplex detection of SARS-CoV-2, Influenza A/B, and RSV.</li>
+      </ul>
+      <div class="pub-links" style="margin-top:1rem;">
         <a class="pub-link" href="#" target="_blank">ACS Sensors (2024)</a>
         <a class="pub-link" href="#" target="_blank">Lab on a Chip (2022)</a>
-        <a class="pub-link" href="#" target="_blank">ACS Sensors (2021)</a>
+        <a class="pub-link" href="#" target="_blank">IEEE Sensors (2026)</a>
       </div>
     </div>
+
+    <div class="rcard">
+      <div class="rcard-header">
+        <span class="rcard-icon">🔬</span>
+        <span class="rcard-title">Rapid, culture-free bloodstream infection diagnostics</span>
+      </div>
+      <p class="rcard-body">We develop <strong>culture-free diagnostic platforms for sepsis</strong> that detect and gram-type bacteria directly from whole blood within 30 minutes, eliminating the 2–5 day blood culture bottleneck in current clinical practice.</p>
+      <div class="rcard-img">🔬</div>
+      <div class="rcard-sub">Sub-projects</div>
+      <ul class="rcard-list">
+        <li><strong>Gram-typing panel:</strong> Biphasic duplex-LAMP assay for gram-positive and gram-negative bacteria directly from whole blood.</li>
+        <li><strong>30-minute CRISPR detection:</strong> OR-gated CRISPR-Cascade for sepsis pathogens without amplification.</li>
+        <li><strong>Clinical translation:</strong> Validation with patient samples toward point-of-care sepsis diagnosis.</li>
+      </ul>
+      <div class="pub-links" style="margin-top:1rem;">
+        <a class="pub-link" href="#" target="_blank">Nature Reviews Bioengineering (2026)</a>
+        <a class="pub-link" href="#" target="_blank">ACS Sensors (2026)</a>
+        <a class="pub-link" href="#" target="_blank">SLAS Technology (2025)</a>
+      </div>
+    </div>
+
   </div>
 
-  <div class="research-item flip">
+  <div class="research-item flip" style="display:none;">
     <div class="r-content">
       <h3>Rapid, culture-free bloodstream infection diagnostics</h3>
       <div class="r-meta">2024 – 2026 · Bashir Lab, UIUC &amp; Sabeti Lab, Broad Institute</div>
