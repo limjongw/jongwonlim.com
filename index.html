@@ -933,6 +933,94 @@
     document.documentElement.setAttribute('data-theme', isDark ? '' : 'dark');
     document.querySelector('.theme-toggle').textContent = isDark ? '☽' : '☀';
   }
+
+  // Star particle trail + blood drip when idle
+  let mouseX = 0, mouseY = 0, idleTimer = null, dripping = false, drips = [];
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    // Star trail
+    const colors = ['#6B5FD4', '#9d93e8', '#FCD34D', '#a78bfa', '#c4b5fd'];
+    const star = document.createElement('div');
+    const size = Math.random() * 8 + 4;
+    const angle = Math.random() * 360;
+    star.style.cssText = `position:fixed;left:${e.clientX}px;top:${e.clientY}px;width:${size}px;height:${size}px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%) rotate(${angle}deg) scale(1);opacity:1;transition:opacity 0.6s ease,transform 0.6s ease;font-size:${size}px;line-height:1;user-select:none;`;
+    star.textContent = Math.random() > 0.5 ? '✦' : '✧';
+    star.style.color = colors[Math.floor(Math.random() * colors.length)];
+    document.body.appendChild(star);
+    requestAnimationFrame(() => { star.style.opacity='0'; star.style.transform=`translate(-50%,-150%) rotate(${angle+30}deg) scale(0.3)`; });
+    setTimeout(() => star.remove(), 650);
+
+    // Reset idle
+    dripping = false;
+    drips.forEach(d => d.remove());
+    drips = [];
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(startDrip, 1200);
+  });
+
+  function startDrip() {
+    dripping = true;
+    dropBlood();
+  }
+
+  function dropBlood() {
+    if (!dripping) return;
+
+    // Drop starting from cursor
+    const drop = document.createElement('div');
+    const startX = mouseX + (Math.random() * 6 - 3);
+    drop.style.cssText = `
+      position: fixed;
+      left: ${startX}px;
+      top: ${mouseY}px;
+      width: ${Math.random() * 4 + 3}px;
+      border-radius: 0 0 50% 50%;
+      background: #cc0000;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translateX(-50%);
+      height: 0;
+      transition: height 0.6s ease-in;
+    `;
+    document.body.appendChild(drop);
+    drips.push(drop);
+
+    // Grow the drip downward
+    const length = Math.random() * 40 + 20;
+    requestAnimationFrame(() => { drop.style.height = length + 'px'; });
+
+    // Splat at bottom
+    setTimeout(() => {
+      const splat = document.createElement('div');
+      splat.style.cssText = `
+        position: fixed;
+        left: ${startX}px;
+        top: ${mouseY + length}px;
+        width: 0; height: 0;
+        background: #aa0000;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: width 0.2s ease, height 0.2s ease, opacity 1.5s ease;
+        opacity: 1;
+      `;
+      document.body.appendChild(splat);
+      drips.push(splat);
+      requestAnimationFrame(() => {
+        const s = Math.random() * 8 + 4;
+        splat.style.width = s + 'px';
+        splat.style.height = (s * 0.5) + 'px';
+      });
+      setTimeout(() => { splat.style.opacity = '0'; setTimeout(() => splat.remove(), 1500); }, 800);
+    }, 650);
+
+    // Next drip
+    if (dripping) setTimeout(dropBlood, Math.random() * 400 + 300);
+  }
 </script>
 </body>
 </html>
