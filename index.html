@@ -231,10 +231,55 @@
 
 <!-- HOME -->
 <div id="home" class="page active">
+  <div style="text-align:center;padding:2.5rem 0 0;">
+    <div id="limlab-title" style="font-family:'EB Garamond',serif;font-size:52px;font-weight:400;color:var(--text-primary);letter-spacing:0.08em;position:relative;display:inline-block;cursor:default;user-select:none;"></div>
+  </div>
+  <script>
+    (function(){
+      const text = 'LIM LAB';
+      const container = document.getElementById('limlab-title');
+      const chars = [];
+      text.split('').forEach((ch, i) => {
+        const span = document.createElement('span');
+        span.textContent = ch === ' ' ? '\u00A0' : ch;
+        span.style.cssText = `display:inline-block;transition:transform 0.8s cubic-bezier(0.34,1.56,0.64,1),opacity 0.8s ease;opacity:0;`;
+        container.appendChild(span);
+        chars.push(span);
+      });
+
+      function scatter() {
+        chars.forEach(s => {
+          const rx = (Math.random() - 0.5) * 600;
+          const ry = (Math.random() - 0.5) * 400;
+          const rot = (Math.random() - 0.5) * 720;
+          s.style.transform = `translate(${rx}px, ${ry}px) rotate(${rot}deg) scale(0.2)`;
+          s.style.opacity = '0';
+        });
+      }
+
+      function gather() {
+        chars.forEach((s, i) => {
+          setTimeout(() => {
+            s.style.transform = 'translate(0,0) rotate(0deg) scale(1)';
+            s.style.opacity = '1';
+          }, i * 60);
+        });
+      }
+
+      // Initial: scattered
+      scatter();
+      // Then gather
+      setTimeout(gather, 300);
+
+      // Hover: scatter then re-gather
+      container.addEventListener('mouseenter', () => {
+        scatter();
+        setTimeout(gather, 200);
+      });
+    })();
+  </script>
   <div class="hero">
-    <div class="hero-photo">
-      <img src="내사진4.jpg" alt="Jongwon Lim" />
-    </div>
+    
     <h1 id="greeting" style="font-family:'EB Garamond',serif;font-size:34px;font-weight:400;margin-bottom:2rem;color:var(--text-primary);min-height:44px;"></h1>
     <script>
       const greetings = ['Hello!', '안녕하세요!', '你好！'];
@@ -934,8 +979,60 @@
     document.querySelector('.theme-toggle').textContent = isDark ? '☽' : '☀';
   }
 
-  // Star particle trail + blood drip when idle
-  let mouseX = 0, mouseY = 0, idleTimer = null, dripping = false, drips = [];
+  // Star particle trail + baby chasing cursor when idle
+  let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2;
+  let babyX = -80, babyY = -80;
+  let idleTimer = null, babyActive = false;
+  let babyEl = null, animFrame = null;
+
+  function createBaby() {
+    if (babyEl) return;
+    babyEl = document.createElement('div');
+    babyEl.textContent = '👶';
+    babyEl.style.cssText = `
+      position: fixed;
+      left: ${babyX}px;
+      top: ${babyY}px;
+      font-size: 28px;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: font-size 0.3s;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    `;
+    document.body.appendChild(babyEl);
+  }
+
+  function removeBaby() {
+    if (babyEl) { babyEl.remove(); babyEl = null; }
+    if (animFrame) { cancelAnimationFrame(animFrame); animFrame = null; }
+    babyActive = false;
+  }
+
+  function chaseCursor() {
+    if (!babyActive || !babyEl) return;
+    const dx = mouseX - babyX;
+    const dy = mouseY - babyY;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const speed = 3.5;
+
+    if (dist > 8) {
+      babyX += (dx / dist) * speed;
+      babyY += (dy / dist) * speed;
+
+      // Waddling: slight left-right wobble
+      const wobble = Math.sin(Date.now() * 0.015) * 12;
+      const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+      const flip = dx < 0 ? 'scaleX(-1)' : 'scaleX(1)';
+      babyEl.style.left = babyX + 'px';
+      babyEl.style.top = babyY + 'px';
+      babyEl.style.transform = `translate(-50%, -50%) ${flip} rotate(${wobble}deg)`;
+    } else {
+      // Reached cursor — bouncy happy effect
+      babyEl.style.transform = `translate(-50%, -50%) scale(${1.3 + Math.sin(Date.now()*0.02)*0.2})`;
+    }
+    animFrame = requestAnimationFrame(chaseCursor);
+  }
 
   document.addEventListener('mousemove', e => {
     mouseX = e.clientX;
@@ -953,74 +1050,17 @@
     requestAnimationFrame(() => { star.style.opacity='0'; star.style.transform=`translate(-50%,-150%) rotate(${angle+30}deg) scale(0.3)`; });
     setTimeout(() => star.remove(), 650);
 
-    // Reset idle
-    dripping = false;
-    drips.forEach(d => d.remove());
-    drips = [];
+    // Reset idle — remove baby if moving
+    if (babyActive) removeBaby();
     clearTimeout(idleTimer);
-    idleTimer = setTimeout(startDrip, 1200);
+    idleTimer = setTimeout(() => {
+      babyActive = true;
+      babyX = mouseX + (Math.random() * 200 - 100);
+      babyY = mouseY + 150;
+      createBaby();
+      chaseCursor();
+    }, 1500);
   });
-
-  function startDrip() {
-    dripping = true;
-    dropBlood();
-  }
-
-  function dropBlood() {
-    if (!dripping) return;
-
-    // Drop starting from cursor
-    const drop = document.createElement('div');
-    const startX = mouseX + (Math.random() * 6 - 3);
-    drop.style.cssText = `
-      position: fixed;
-      left: ${startX}px;
-      top: ${mouseY}px;
-      width: ${Math.random() * 4 + 3}px;
-      border-radius: 0 0 50% 50%;
-      background: #cc0000;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translateX(-50%);
-      height: 0;
-      transition: height 0.6s ease-in;
-    `;
-    document.body.appendChild(drop);
-    drips.push(drop);
-
-    // Grow the drip downward
-    const length = Math.random() * 40 + 20;
-    requestAnimationFrame(() => { drop.style.height = length + 'px'; });
-
-    // Splat at bottom
-    setTimeout(() => {
-      const splat = document.createElement('div');
-      splat.style.cssText = `
-        position: fixed;
-        left: ${startX}px;
-        top: ${mouseY + length}px;
-        width: 0; height: 0;
-        background: #aa0000;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9998;
-        transform: translate(-50%, -50%);
-        transition: width 0.2s ease, height 0.2s ease, opacity 1.5s ease;
-        opacity: 1;
-      `;
-      document.body.appendChild(splat);
-      drips.push(splat);
-      requestAnimationFrame(() => {
-        const s = Math.random() * 8 + 4;
-        splat.style.width = s + 'px';
-        splat.style.height = (s * 0.5) + 'px';
-      });
-      setTimeout(() => { splat.style.opacity = '0'; setTimeout(() => splat.remove(), 1500); }, 800);
-    }, 650);
-
-    // Next drip
-    if (dripping) setTimeout(dropBlood, Math.random() * 400 + 300);
-  }
 </script>
 </body>
 </html>
