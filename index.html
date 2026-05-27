@@ -89,7 +89,8 @@
     .tl-card .tl-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
     .tl-card ul { margin: 0.5rem 0 0 1rem; }
     .tl-card ul li { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 4px; }
-    .highlight-badge { display: inline-block; font-size: 11px; padding: 2px 8px; background: var(--purple-light); color: var(--purple); border-radius: 10px; margin-bottom: 4px; margin-right: 4px; }
+    .highlight-badge { display: inline-block; font-size: 11px; padding: 2px 8px; background: var(--purple-light); color: var(--purple); border-radius: 10px; margin-bottom: 4px; margin-right: 4px; text-decoration: none; }
+    .highlight-badge:hover { background: var(--purple); color: #fff; text-decoration: none; }
 
     .research-item { display: grid; grid-template-columns: 190px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 0.5px solid var(--border); align-items: start; }
     .research-item:last-child { border-bottom: none; }
@@ -120,6 +121,8 @@
     .award-item:last-child { border-bottom: none; }
     .award-year { font-size: 12px; color: var(--purple); min-width: 45px; padding-top: 2px; font-weight: 500; }
     .award-name { font-size: 14px; font-weight: 500; color: var(--text-primary); margin-bottom: 2px; }
+    .award-name a { color: var(--text-primary); text-decoration: none; border-bottom: 1px solid var(--border-strong); }
+    .award-name a:hover { color: var(--purple); border-bottom-color: var(--purple); }
     .award-org { font-size: 12px; color: var(--text-muted); }
     .award-detail { font-size: 11px; color: var(--purple); margin-top: 2px; }
 
@@ -256,7 +259,7 @@
           <div class="tl-period">2026 – Present</div>
           <div class="tl-desc">Advisor: Prof. Pardis Sabeti</div>
           <div style="margin-top:8px;">
-            <span class="highlight-badge">2026 KSEA Postdoctoral Fellowship (5 selected, national)</span>
+            <a href="https://award.ksea.org/scholarships/recipients/2026-scholarships-and-postdoctoral-fellowship-recipients" target="_blank" class="highlight-badge">2026 KSEA Postdoctoral Fellowship (5 selected, national)</a>
           </div>
         </div>
       </div>
@@ -268,9 +271,9 @@
           <div class="tl-period">2025 – 2026</div>
           <div class="tl-desc">Advisor: Prof. Rashid Bashir · Professor Joe Greene Postdoctoral Fellow (2 selected, institutional)</div>
           <div style="margin-top:8px;">
-            <span class="highlight-badge">2025 Trailblazers in Engineering Fellow, Purdue (33 selected)</span>
-            <span class="highlight-badge">2026 Future Leaders in Bioengineering, Rice (3 selected)</span>
-            <span class="highlight-badge">2026 CMBE Travel Award (7 selected)</span>
+            <a href="https://engineering.purdue.edu/Trailblazers/fellows" target="_blank" class="highlight-badge">2025 Trailblazers in Engineering Fellow, Purdue (33 selected)</a>
+            <a href="https://bioengineering.rice.edu/news-events/future-leaders-bioengineering" target="_blank" class="highlight-badge">2026 Future Leaders in Bioengineering, Rice (3 selected)</a>
+            <a href="https://www.bmes.org/2026/cmbeconference/awards" target="_blank" class="highlight-badge">2026 CMBE Travel Award (7 selected)</a>
           </div>
         </div>
       </div>
@@ -289,9 +292,9 @@
           <div class="tl-period">2020 – 2024</div>
           <div class="tl-desc">Advisor: Prof. Rashid Bashir · Thesis: Next-generation diagnostics for respiratory and blood-borne pathogens · Asan Medical Bioscience Scholarship Fellow (2022–2024, 5 selected)</div>
           <div style="margin-top:8px;">
-            <span class="highlight-badge">2024 Rising Stars in Materials Science & Engineering (10 selected)</span>
-            <span class="highlight-badge">2024 SLAS Innovation Award (1 of 7,000 attendees)</span>
-            <span class="highlight-badge">2022 Baxter Young Investigator Award (6 selected, N. America)</span>
+            <a href="https://mse.engineering.cmu.edu/education/rising-stars.html" target="_blank" class="highlight-badge">2024 Rising Stars in Materials Science & Engineering (10 selected)</a>
+            <a href="https://www.slas.org/resources/awards-and-grants/innovation-award-winners/" target="_blank" class="highlight-badge">2024 SLAS Innovation Award (1 of 7,000 attendees)</a>
+            <a href="https://www.baxter.com/baxter-young-investigator-awards-2022-winners" target="_blank" class="highlight-badge">2022 Baxter Young Investigator Award (6 selected, N. America)</a>
             <span class="highlight-badge">2022 & 2023 First Prize Oral Presentation, BIOE Symposium</span>
           </div>
         </div>
@@ -323,7 +326,7 @@
     <div class="award-item">
       <span class="award-year">2026</span>
       <div>
-        <div class="award-name">KSEA Postdoctoral Fellowship</div>
+        <div class="award-name"><a href="https://award.ksea.org/scholarships/recipients/2026-scholarships-and-postdoctoral-fellowship-recipients" target="_blank">KSEA Postdoctoral Fellowship</a></div>
         <div class="award-org">Korean-American Scientists and Engineers Association · Hyundai Postdoctoral Fellowship</div>
         <div class="award-detail">5 selected nationally · $2,500</div>
       </div>
@@ -331,7 +334,7 @@
     <div class="award-item">
       <span class="award-year">2026</span>
       <div>
-        <div class="award-name">Future Leaders in Bioengineering</div>
+        <div class="award-name"><a href="https://bioengineering.rice.edu/news-events/future-leaders-bioengineering" target="_blank">Future Leaders in Bioengineering</a></div>
         <div class="award-org">Rice University, Department of Bioengineering</div>
         <div class="award-detail">3 selected internationally · Invited seminar + faculty-style visit</div>
       </div>
@@ -339,7 +342,7 @@
     <div class="award-item">
       <span class="award-year">2025</span>
       <div>
-        <div class="award-name">Professor Joe Greene Postdoctoral Fellow</div>
+        <div class="award-name"><a href="https://mrl.illinois.edu/news/73787" target="_blank">Professor Joe Greene Postdoctoral Fellow</a></div>
         <div class="award-org">Materials Research Laboratory, The Grainger College of Engineering, UIUC</div>
         <div class="award-detail">2 selected · $67,000/year + $5,000 research budget · Highest postdoctoral salary at UIUC</div>
       </div>
@@ -347,7 +350,7 @@
     <div class="award-item">
       <span class="award-year">2025</span>
       <div>
-        <div class="award-name">Trailblazers in Engineering Fellow</div>
+        <div class="award-name"><a href="https://engineering.purdue.edu/Trailblazers/fellows" target="_blank">Trailblazers in Engineering Fellow</a></div>
         <div class="award-org">Purdue University, College of Engineering</div>
         <div class="award-detail">33 selected out of 140 applicants · Faculty career development workshop</div>
       </div>
@@ -355,7 +358,7 @@
     <div class="award-item">
       <span class="award-year">2024</span>
       <div>
-        <div class="award-name">SLAS Innovation Award</div>
+        <div class="award-name"><a href="https://www.slas.org/resources/awards-and-grants/innovation-award-winners/" target="_blank">SLAS Innovation Award</a></div>
         <div class="award-org">Society for Laboratory Automation and Screening</div>
         <div class="award-detail">1 selected out of 7,000 attendees · $10,000 · 4th student to receive this honor in 20 years</div>
       </div>
@@ -363,7 +366,7 @@
     <div class="award-item">
       <span class="award-year">2024</span>
       <div>
-        <div class="award-name">Rising Stars in Materials Science and Engineering</div>
+        <div class="award-name"><a href="https://mse.engineering.cmu.edu/education/rising-stars.html" target="_blank">Rising Stars in Materials Science and Engineering</a></div>
         <div class="award-org">Carnegie Mellon · UIUC · Stanford · MIT</div>
         <div class="award-detail">10 selected nationally · Only UIUC graduate student selected</div>
       </div>
@@ -371,7 +374,7 @@
     <div class="award-item">
       <span class="award-year">2022</span>
       <div>
-        <div class="award-name">Asan Medical Bioscience Scholarship Fellow</div>
+        <div class="award-name"><a href="https://www.asanfoundation.or.kr/af/eng.scholarships.scholarships.sp" target="_blank">Asan Medical Bioscience Scholarship Fellow</a></div>
         <div class="award-org">Asan Foundation</div>
         <div class="award-detail">5 selected internationally · $32,000/year for two years · Largest fellowship amount in Korea</div>
       </div>
@@ -379,7 +382,7 @@
     <div class="award-item">
       <span class="award-year">2022</span>
       <div>
-        <div class="award-name">Baxter Young Investigator Award</div>
+        <div class="award-name"><a href="https://www.baxter.com/baxter-young-investigator-awards-2022-winners" target="_blank">Baxter Young Investigator Award</a></div>
         <div class="award-org">Baxter International Inc.</div>
         <div class="award-detail">6 first-tier winners in North America · $3,000</div>
       </div>
