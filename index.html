@@ -222,13 +222,30 @@
 <div id="home" class="page active">
   <div class="hero">
     <div class="hero-photo">
-      <img src="https://jongwonlim.com/wp-content/uploads/2024/02/picture3aaasdsad.png" alt="Jongwon Lim" />
+      <img src="내사진4.jpg" alt="Jongwon Lim" />
     </div>
-    <h1>안녕하세요!</h1>
+    <h1 id="greeting" style="font-family:'EB Garamond',serif;font-size:34px;font-weight:400;margin-bottom:2rem;color:var(--text-primary);min-height:44px;"></h1>
+    <script>
+      const greetings = ['Hello!', '안녕하세요!', '你好！'];
+      let gi = 0, ci = 0, deleting = false;
+      const el = document.getElementById('greeting');
+      function type() {
+        const word = greetings[gi];
+        if (!deleting) {
+          el.textContent = word.slice(0, ++ci);
+          if (ci === word.length) { deleting = true; setTimeout(type, 1800); return; }
+        } else {
+          el.textContent = word.slice(0, --ci);
+          if (ci === 0) { deleting = false; gi = (gi + 1) % greetings.length; setTimeout(type, 300); return; }
+        }
+        setTimeout(type, deleting ? 60 : 100);
+      }
+      setTimeout(type, 500);
+    </script>
     <div class="hero-bio">
       <p>I'm Jongwon, a bioengineering researcher developing point-of-care molecular diagnostic platforms for infectious disease detection, with a focus on blood drying techniques and CRISPR-based assays.</p>
       <p>I am a Postdoctoral Associate in the <a href="https://www.sabetilab.org/">Sabeti Lab</a> at the Broad Institute of MIT and Harvard. Previously, I was a Professor Joe Greene Postdoctoral Fellow in the <a href="https://libna.mntl.illinois.edu/">Bashir Lab</a> at the University of Illinois Urbana-Champaign.</p>
-      <p>My vision is to establish a new field of <em>blood engineering for diagnostics</em> — integrating research, teaching, mentoring, and outreach to become scientifically influential and foster next-generation scientific leaders.</p>
+      <p>My vision is to establish a new field of <em>blood engineering for diagnostics</em> — integrating research, teaching, mentoring, and outreach to become scientifically influential and foster next-generation scientific leaders. If you are interested in my research vision, you can <a href="https://riceuniversity.zoom.us/rec/play/edaba6ZM3F44dxbc-zbcpS8cYcbBcZ89v6-DbW_M85RGtwnXHJ9iszZjOzX33l4p2YJw2R2WELHssPiC.TzX2KoyI6AF6F17J?accessLevel=meeting&canPlayFromShare=true&from=share_recording_detail&startTime=1769710317000&oldStyle=true&componentName=rec-play&originRequestUrl=https%3A%2F%2Friceuniversity.zoom.us%2Frec%2Fshare%2FHTVwdkknExyOc6vPU8MtMcguiN_ygmGTb48edLYgqxAXG2AFrl5QPvOn0hZ9jIe3.FB2YPRiXcgrt7RKS%3FstartTime%3D1769710317000" target="_blank">watch my faculty talk at Rice University →</a></p>
       <p>Outside the lab, I am deeply interested in <a href="https://www.linkedin.com/posts/jongwon-lim-3518251b7_recorded-time-accumulated-effort-a-four-year-activity-7296299368050016256-qfkg?utm_source=share&utm_medium=member_desktop&rcm=ACoAADJ9Va0BGiS4eYWqTgi2PKI18Lhf19O1OGc" target="_blank">time management and personal productivity</a> — I strongly believe in the power of deliberate routine and that how you structure your day shapes who you become. I enjoy philosophy, particularly Adlerian psychology, and love thinking through big ideas about purpose, courage, and human potential. I find great satisfaction in writing, <a href="https://www.youtube.com/watch?v=ZuLssXUJPh0" target="_blank">science communication</a>, and sharing ideas that might positively influence others. One of my greatest motivators is learning from and chasing after exceptional people — I believe surrounding yourself with those who inspire you is one of the fastest ways to grow. My mornings start very early, and I wouldn't have it any other way. I also love spending time with my wife and our son.</p>
     </div>
     <div class="stats-row">
